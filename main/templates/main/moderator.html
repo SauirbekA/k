@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block style %} 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+{% endblock %}    
+
+
+{% block content %}
+
+<h1 class="justify-content-center">This is moderator's page</h1>
+
+
+<br>
+<div class="row display-flex justify-content-start" align="center">
+{% block course %}
+{% for m in course %}
+<br>
+    <div class="col-lg-4 col-md-6 col-sm-12 mobiledevice">
+        <article class="media content-section customhover" style="height: 95%;">
+            <div class="media-body">
+               
+                    <img class="img-fluid" src="{{m.photo.url}}" width="50">
+                
+                <div class="article-metadata">
+                    <a class='mr-2' href="{% url 'profile' %}">{{ user }}</a>
+                    
+                </div>
+                <div>
+                    <a class="article-title line-clamp-2 title-style" style="font-size: 22px" href="{{ m.get_absolute_url}}">
+                        {{ m.title }}
+                    </a>
+    
+                        <p class="article-content line-clamp-5 subtitle-style">{{ m.content }}</p>
+                    
+                </div>
+            </div>
+        </article>
+    </div>
+{% endfor %}
+{% endblock course %}
+</div>
+
+    
+    
+
+{% endblock content %}

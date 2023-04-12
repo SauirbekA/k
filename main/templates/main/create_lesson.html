@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block style %}
+<style>
+    div.stl{
+        position: fixed;
+        left: 10%; 
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- <h1 style="color: red; ">Do not change idCourse section!</h1><br> -->
+    <div class="stl">
+        <form action="{% url 'create_lesson' id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                
+                <input type="hidden" name="id" value="{{ idCourse }}">
+        
+            {{form|crispy}}
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+
+{% endblock %}

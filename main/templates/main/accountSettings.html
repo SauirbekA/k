@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+
+{% block style %}
+{% load static %}
+{% load crispy_forms_tags %}
+<style>
+    div.stl{
+        position: fixed;
+        left: 30%;
+        
+    }
+</style>
+{% endblock %}
+
+{% block content %} 
+
+    <div class="stl">
+        <form method="post" action="{% url 'accountSettings' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{ form|crispy}}
+            <input class="btn btn-primary" type="submit" name="Update Information">
+        </form>
+    </div>
+{% endblock %}
+

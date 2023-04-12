@@ -1,0 +1,101 @@
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_tags %}
+{% load embed_video_tags %}
+{% load static %}
+
+{% block style %}
+        <style>
+                h1{
+                color:red;
+                }
+
+                div.body{
+                        position: relative;
+                        left: 20px;
+                }
+                h1.mb-5{
+                        
+                        position: relative;
+                        left: 500px;    
+                }
+              
+
+        </style>
+
+    <link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/7.0/video.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+        <div class="body">
+
+                
+        {% for m in menu %}
+
+                
+                
+                {% if user.groups.first.name == 'moderator' %}
+                <!-- <p>Group name: {{ user.groups.first.name }}</p> -->
+                <form action="{% url 'accept_course' m.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-info" value="Publish/Unpublish course" style="position: absolute; right: 20px;">
+                      </form>
+                {% elif user.groups.first.name == 'teacher' %}    
+                <p>You are teacher</p>  
+                {% else %} 
+                        {% if lesson %}
+                        <h3><a class="btn btn-danger" href="{% url 'delete_course_from_user' id %}">UnEnroll from a Course</a></h3>
+                        {% else %}
+                                {% if m.idUser == user.pk %}
+                                        <h3><a class="btn btn-danger" href="{% url 'delete_course' m.pk %}">Delete course</a></h3>
+                                {% else %}
+                                        <h3><a class="btn btn-success" id="enroll" href="{% url 'add_course_to_user' id %}">Enroll to a Course</a></h3>
+                                        <h3><a class="btn btn-success" id="enroll" href="{% url 'my_view' id %}">Add course to cart</a></h3>
+                                {% endif %}
+                        {% endif %}
+                {% endif %}
+
+
+                
+                <span><img class="m-3" src="{{ m.photo.url }}" width="200" height="200" alt="MyPhoto" align="left"> &ensp;  <h3 class="fw-bold">{{m.title}}</h3> </span>
+             
+                <p class="my-3 pb-5 col-8">{{m.content}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, voluptate obcaecati ducimus suscipit eaque animi cumque ut! Deserunt ab hic eos, minima, mollitia temporibus, repudiandae voluptates tempore reiciendis soluta odio.</p>
+
+                {% if m.video %}
+                <center><div class="container justify-content-center m-5 p-5"  >
+                        <video id="example_video_1" class="video-js" controls preload="none" width="640" height="264" poster="{{ m.photo.url }}" data-setup="{}">
+                                <source src="{{m.video.url}}" type="video/mp4">
+
+                                <track kind="captions" src="../shared/example-captions.vtt" srclang="en" label="English">
+                                <track kind="subtitles" src="../shared/example-captions.vtt" srclang="en" label="English">
+                                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                        </video>
+                </div></center>
+                {% endif %}<br><br>
+
+              
+
+                {% if m.idUser == user.pk %}
+                        <center><a href="{% url 'create_lesson' m.pk %}" class="btn btn-outline-info">Create lesson</a></center>
+                {% endif %}
+
+              
+                
+                <br> <br> 
+                <!-- <h1 class="mb-5" ><a href="{% url 'lesson' id %}">Go to lessons</a></h1> -->
+                {% if lesson or user.groups.first.name == 'moderator' or user.groups.first.name == 'teacher' %}
+                        <center><a href="{% url 'lesson' id %}" class="btn btn-primary">Go to the lessons</a></center>
+                {% else %}             
+                        <center><h3><a class="btn btn-primary" href="#enroll">Enroll first to see lessons</a></h3></center>                
+                {% endif %}
+                <!-- <center><a href="{% url 'lesson' id %}" class="btn btn-primary">Go to the lessons</a></center> -->
+                <br>
+        
+<!-- btn btn-success -->
+
+        {% endfor %}
+        </div>
+
+{% endblock %}

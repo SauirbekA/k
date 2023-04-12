@@ -1,0 +1,166 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+
+{% block style %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bootstrap 4, from LayoutIt!</title>
+
+  <meta name="description" content="Source code generated using layoutit.com">
+  <meta name="author" content="LayoutIt!">
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'main/mainform.css' %}" rel="stylesheet">
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <!-- <script type="text/javascript">
+    var onloadCallback = function() {
+      grecaptcha.render('html_element', {
+        '6LfcLW8kAAAAAB4r0HUc3BYgogZejPXAX2TUxqlp' : '6LfcLW8kAAAAABP2uDx-iWqH0cJrSxB9HyuxdPel',
+        'callback' : onSubmit
+      });
+    };
+  </script> -->
+
+
+{% endblock %}
+
+{% block content %}
+
+      <body>
+    
+        <div class="container-fluid ">
+      <div class="row">
+        <div class="col-md-12">
+         <!--This is the thing-->
+          <div class="jumbotron">
+            <h2>
+              Hello, {{user}}!
+            </h2>
+            <p>
+              This is a free learning site, feel free to use our resourses, but you have to register first!
+            </p>
+            <p>
+              <a class="btn btn-primary btn-large" href="{% url 'catalogue' %}">Learn more</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      
+      <div class="form">
+        {% csrf_token %}
+        <form action="" onsubmit=" return sender()">
+            <input type="text" name="name" id="name" placeholder="Your name" required>
+            <input type="email" name="email" id="email" placeholder="Your email" required>
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Enter message" required></textarea>
+            <input type="submit" value="Send" id="btn">
+        </form>
+    </div> -->
+
+      
+
+
+      <!-- {% if user.is_authenticated %}
+      <div class="row">
+        {% for m in menu %}
+        <div class="col-md-4">
+          <img src="{{ m.photo.url }}" width="50" height="50" alt="MyPhoto" align="left">
+          <h2>
+            &emsp;{{m.title}}
+          </h2>
+          <p>
+            {{m.content}}
+          </p>
+          <p>
+            <a class="btn" href="{{ m.get_absolute_url }}">View course »</a>
+          </p>
+        </div>
+        {% endfor %}
+        
+      </div>
+      {% else %} 
+      <h2><a href="{% url 'login'%}">You need to authenticate to see the content</a></h2>
+      {% endif %}
+
+    </div> -->
+    <!-- Embed currency block -->
+    <center class="m-5 p-5">  <div id="currency-converter-540151"><script type="text/javascript" src="https://www.cashbackforex.com/Content/remote/remote-widgets.js"></script><script type="text/javascript"> RemoteCalc({"Url":"https://www.cashbackforex.com", "TopPaneStyle":"YmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KCMxYmExYzQgMjAlLCAjNDliOWFkIDQ1JSk7IGJvcmRlcjogc29saWQgMHB4OyBib3JkZXItYm90dG9tOiBub25lOyBjb2xvcjogd2hpdGU7","BottomPaneStyle":"YmFja2dyb3VuZDogd2hpdGU7IGJvcmRlcjogc29saWQgMXB4ICM3YTdhN2E7IGJvcmRlci10b3A6IG5vbmU7IGNvbG9yOiBibGFjazs=","ButtonStyle":"YmFja2dyb3VuZDogIzFiYTFjNDsgY29sb3I6IHdoaXRlOyBib3JkZXItcmFkaXVzOiAyMHB4Ow==","TitleStyle":"dGV4dC1hbGlnbjogbGVmdDsgZm9udC1zaXplOiA0MHB4OyBmb250LXdlaWdodDogNTAwOw==","TextboxStyle":"YmFja2dyb3VuZC1jb2xvcjogd2hpdGU7IGNvbG9yOiBibGFjazsgYm9yZGVyOiBzb2xpZCAxcHggI2FhYWFhYQ==","ContainerWidth":"665","HighlightColor":"#ffff00","IsDisplayTitle":false,"IsShowEmbedButton":false,"CompactType":"large","DefaultCurrencyFrom":"EUR","DefaultCurrencyTo":"USD","Calculator":"currency-converter","ContainerId":"currency-converter-540151"});</script></div>        
+    </center>
+
+    <!-- Go to currency page -->
+    <a href="{% url 'currency' %}" class="btn btn-info">Go to currency page</a>
+
+   <center style="text-decoration: dotted;"> <h2 class="fst-italic">If you have any questions, contact us here!</h2></center><br>
+    <div class="container d-flex align-items-center justify-content-center">
+      
+    <form action="{% url 'send_message' %}" method="post">
+      {% csrf_token %}
+        <!-- Name input-->
+        <div class="form-floating mb-3">
+            <input class="form-control" id="name" type="text" name="name" placeholder="Enter your name..." data-sb-validations="required" required />
+            <label for="name">Full name</label>
+            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+        </div>
+        <!-- Email address input-->
+        <div class="form-floating mb-3">
+            <input class="form-control" id="email" type="email" name="email" placeholder="name@example.com" data-sb-validations="required,email" required />
+            <label for="email">Email address</label>
+            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+        </div>
+        <!-- Phone number input-->
+       <div class="form-floating mb-3">
+            <input class="form-control" id="phone" type="tel" name="phone" placeholder="(123) 456-7890" data-sb-validations="required" required />
+            <label for="phone">Phone number</label>
+            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+        </div>
+        <!-- Captcha input -->
+        <div class="g-recaptcha" data-sitekey="6LfcLW8kAAAAAB4r0HUc3BYgogZejPXAX2TUxqlp" aria-required="true"></div>
+
+        <!-- Message input-->
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="message" type="text" name="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required" required></textarea>
+            <label for="message">Message</label>
+            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+        </div>
+        {% if not user.is_authenticated %} 
+          <a class="btn btn-info" href="{% url 'login' %}">Authorize first</a>
+        {% else %}  
+        <!-- <button class="btn btn-primary btn-xl enabled" id="submitButton" type="submit">Send</button> -->
+        <button  id="submitButton" type="submit" class="btn btn-primary">Submit
+        </button>
+        {% endif %}  
+      
+      
+    </form>
+  </div>
+
+  
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+        </script>
+
+        <script>
+          window.addEventListener('load', () => {
+          const $recaptcha = document.querySelector('#g-recaptcha-response');
+          if ($recaptcha) {
+            $recaptcha.setAttribute('required', 'required');
+          }
+        })
+        </script>
+
+        <script src="{% static 'bot.js' %}"></script>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+      </body>
+
+{% endblock %}

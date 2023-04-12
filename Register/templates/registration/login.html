@@ -1,0 +1,9 @@
+{% extends 'register/login_base.html' %}
+
+
+{% block button %}
+
+      <button type="submit" class="btn btn-primary">Log in</button>
+      <p>Don't have an account? Create one <a href="{% url 'register' %}" style="color:blue">here</a> </p>
+  
+{% endblock %}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center
+        }
+        
+        .wrapper {
+            width: 350px;
+            height: 350px;
+            position: relative;
+            border-radius: 10px
+        }
+        
+        .outer-card {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: 10px
+        }
+        
+        input,
+        input::-webkit-input-placeholder {
+            font-size: 16px;
+            line-height: 3
+        }
+        
+        .wrapper .card::after {
+            position: absolute;
+            content: "";
+            width: 200px;
+            height: 200px;
+            background-color: #3641d3;
+            right: -30px;
+            top: -30px;
+            border-radius: 50%;
+            opacity: 0.7
+        }
+        
+        .wrapper .card::before {
+            position: absolute;
+            content: "";
+            width: 300px;
+            height: 300px;
+            background-color: #3641d3;
+            left: -70px;
+            top: -70px;
+            border-radius: 50%;
+            opacity: 0.4
+        }
+        
+        .wrapper .forms {
+            padding-top: 30px;
+            padding-left: 20px;
+            padding-right: 20px
+        }
+        
+        .wrapper .forms input {
+            height: 40px;
+            width: 100%;
+            font-size: 18px;
+            border: 2px solid #eee;
+            border-radius: 4px;
+            text-indent: 10px;
+            margin-top: 4px
+        }
+        
+        .wrapper .forms input:focus {
+            outline: none
+        }
+        
+        .input-items span {
+            font-size: 14px;
+            margin-left: 2px
+        }
+        
+        .input-items {
+            margin-bottom: 10px
+        }
+        
+        .one-line {
+            display: flex;
+            flex-direction: row
+        }
+        
+        .one-line .input-items:nth-child(1) {
+            margin-right: 10px
+        }
+        
+        .input-buttons {
+            width: 100%;
+            margin-top: 10px
+        }
+        
+        .input-buttons a {
+            width: 100%;
+            height: 45px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #000;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>This is a payment page</h1>
+    You have to pay {{cost}}$ to get this course!
+    <button class="btn-success"><a href="{% url 'pay' id %}">Pay</a></button> -->
+    
+    <div class="container"><div class="wrapper"> <div class="outer-card"> <div class="forms"> <div class="input-items"> <span>Card Number</span> <input placeholder=".... .... .... ...." data-slots="." data-accept="\d" size="19"> </div> <div class="input-items"> <span>Name on card</span> <input placeholder="Samuel Iscon" > </div> <div class="one-line"> <div class="input-items"> <span>Expiry Date</span> <input placeholder="mm/yyyy" data-slots="my"> </div> <div class="input-items"> <span>CVV</span> <input placeholder="..." data-slots="." data-accept="\d" size="3"> </div> </div> <div class="input-buttons"> <a href="{% url 'pay' id %}">Pay {{cost}}$</a> </div> </div> </div> </div> </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
